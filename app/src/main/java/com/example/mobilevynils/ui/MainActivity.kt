@@ -1,38 +1,47 @@
 package com.example.mobilevynils.ui
 
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.mobilevynils.R
 import com.example.mobilevynils.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val navView: BottomNavigationView = binding.navView
 
-        // Get the navigation host fragment from this Activity
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        // Instantiate the navController using the NavHostFragment
-        navController = navHostFragment.navController
-        // Make sure actions in the ActionBar get propagated to the NavController
-        Log.d("act", navController.toString())
-        setSupportActionBar(findViewById(R.id.my_toolbar))
-        setupActionBarWithNavController(navController)
+        navController = findNavController(R.id.nav_host_fragment)
+
+
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_albums, R.id.navigation_albums, R.id.navigation_artists
+            )
+        )
+        setSupportActionBar(navController)
+
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
     }
 
-    /*
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
+        return navController.navigateUp()
+                || super.onSupportNavigateUp()
     }
-
-     */
-
 }

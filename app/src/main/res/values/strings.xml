@@ -3,5 +3,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_artistas">Artistas</string>
+    <string name="title_albumes">Albumes</string>
+    <string name="title_coleccionistas">Coleccionistas</string>
 
 </resources>
