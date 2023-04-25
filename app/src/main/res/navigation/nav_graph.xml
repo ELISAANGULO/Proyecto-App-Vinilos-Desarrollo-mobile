@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/artistaFragment"
         android:name="com.example.mobilevynils.ui.ArtistaFragment"
-        android:label="Artistas favortitos de elisa"
+        android:label="Artistas favoritos de Elisa"
         tools:layout="@layout/artista_fragment" >
 
     </fragment>
