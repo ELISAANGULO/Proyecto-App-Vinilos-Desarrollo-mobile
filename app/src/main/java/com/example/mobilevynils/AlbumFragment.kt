@@ -1,59 +1,102 @@
 package com.example.mobilevynils
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.mobilevynils.R
+import com.example.mobilevynils.ui.adapter.AlbumsAdapter
+import com.example.mobilevynils.databinding.FragmentAlbumBinding
+import com.example.mobilevynils.viewModels.AlbumViewModel
+import java.lang.Exception
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AlbumFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AlbumFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentAlbumBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var recyclerView: RecyclerView
+    private var viewModelAdapter: AlbumsAdapter?= null
+    private lateinit var viewModel: AlbumViewModel
+    private var mSwipeRefreshLayout: SwipeRefreshLayout? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_album, container, false)
+        _binding = FragmentAlbumBinding.inflate(inflater, container, false)
+        val view = binding.root
+        viewModelAdapter = AlbumsAdapter()
+        mSwipeRefreshLayout = view.findViewById(R.id.swipe_refresh_albums)
+        mSwipeRefreshLayout?.setOnRefreshListener {
+            viewModel.forceRefreshDataFromNetwork()
+            val handler = Handler()
+            handler.postDelayed({
+                if (mSwipeRefreshLayout!!.isRefreshing) {
+                    mSwipeRefreshLayout?.isRefreshing = false
+                }
+            }, 1000)
+        }
+        /*view.agregarAlbumButt.setOnClickListener {
+            val navCreateAlbum = AlbumsFragmentDirections.actionNavigationAlbumsToCreateAlbumFragment()
+            view.findNavController().navigate(navCreateAlbum)
+        }*/
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AlbumFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AlbumFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        recyclerView = binding.albumsRv
+        recyclerView.layoutManager = GridLayoutManager(view.context,2)
+        recyclerView.adapter = viewModelAdapter
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        val activity = requireNotNull(this.activity) {
+            "You can only access the viewModel after onActivityCreated()"
+        }
+
+        var forceRefresh = false
+        /*try {
+            val args: AlbumFragmentArgs by navArgs()
+
+            if (args.forceRefresh)
+            {
+                forceRefresh = true
             }
+        }
+        catch (e:Exception)
+        {
+            forceRefresh = false
+        }*/
+        activity.actionBar?.title = getString(R.string.title_albumes)
+        viewModel = ViewModelProvider(this, AlbumViewModel.Factory(activity.application, true)).get(AlbumViewModel::class.java)
+        viewModel.albums.observe(viewLifecycleOwner, {
+            it.apply {
+                viewModelAdapter!!.albums = this
+            }
+        })
+        viewModel.eventNetworkError.observe(viewLifecycleOwner, { isNetworkError ->
+            if (isNetworkError) onNetworkError()
+        })
+    }
+
+    private fun onNetworkError() {
+        if(!viewModel.isNetworkErrorShown.value!!) {
+            Toast.makeText(activity, "Network Error", Toast.LENGTH_LONG).show()
+            viewModel.onNetworkErrorShown()
+        }
     }
 }

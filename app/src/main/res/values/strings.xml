@@ -5,5 +5,5 @@
     <string name="title_artistas">Artistas</string>
     <string name="title_albumes">Albumes</string>
     <string name="title_coleccionistas">Coleccionistas</string>
-
+    <string name="agregar_album">Agregar Album</string>
 </resources>
