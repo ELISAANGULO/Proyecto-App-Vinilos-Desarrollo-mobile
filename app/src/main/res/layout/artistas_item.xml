@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
     <data>
 
         <variable name="dateUtils" type="com.example.mobilevynils.utils.DateUtils"/>
@@ -16,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,25 +26,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
 
-            app:strokeWidth="1dp">
+          >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:background="@color/black">>
                 <ImageView
                     android:id="@+id/imgArtista"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleType="fitCenter"
-                    android:adjustViewBounds="true"
+                    android:layout_width="80dp"
+                    android:layout_height="130dp"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="false"
                     android:contentDescription="@{artista.name}"
                     />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/cardview_default_radius"
+                    android:layout_marginLeft="20dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -50,7 +55,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@{artista.name}"
+                        android:textStyle="bold"
                         android:layout_marginBottom="3dp"
+                        android:textColor="@color/white"
+
                         />
 
 
@@ -58,7 +66,8 @@
                         android:id="@+id/textView5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{artista.description}"
+                        android:text="Artista"
+                        android:textColor="@color/white"
                         />
 
 
