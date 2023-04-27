@@ -4,12 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.ArtistaFragment"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp">
+    android:layout_marginStart="1dp"
+    android:layout_marginEnd="1dp"
+    android:background="@color/white"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/headerartista"
+        android:layout_marginBottom="10dp"
+        android:adjustViewBounds="false"
+        android:scaleType="centerInside"
+        ></ImageView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/artistasRv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         tools:listitem="@layout/artistas_item" />
+    </LinearLayout>
 </FrameLayout>

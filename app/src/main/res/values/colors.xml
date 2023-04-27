@@ -13,4 +13,5 @@
     <color name="primaryTextColor">#ffffff</color>
     <color name="secondaryTextColor">#7D7D7D</color>
     <color name="my_spinner_text_color">#FFFFFF</color>
+    <color name="backgroundColorMenu">#FFC76F</color>
 </resources>
