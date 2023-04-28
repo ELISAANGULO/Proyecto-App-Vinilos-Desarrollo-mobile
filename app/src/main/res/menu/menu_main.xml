@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.MainActivity"
-    >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="Settings"
-        app:showAsAction="never" />
+        android:id="@+id/navigation_albums"
+        android:icon="@drawable/ic_album"
+        android:title="@string/title_albumes" />
+
+    <item
+        android:id="@+id/navigation_collectors"
+        android:icon="@drawable/ic_coleccionistas"
+        android:title="@string/title_coleccionistas" />
+
+    <item
+        android:id="@+id/navigation_artists"
+        android:icon="@drawable/ic_artistas"
+        android:title="@string/title_artistas" />
+
 </menu>
