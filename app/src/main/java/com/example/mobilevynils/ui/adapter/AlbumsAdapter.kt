@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobilesvynilis.models.Album
 import com.example.mobilevynils.databinding.AlbumItemBinding
 import com.example.mobilevynils.R
-
+import com.bumptech.glide.Glide
 
 class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumsViewHolder>(){
 
@@ -31,11 +31,11 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumsViewHolder>(){
 
         holder.viewDataBinding.also {
             it.albums = albums[position]
-            /*Picasso.get()
-                .load(it.albums?.cover)
-                .placeholder(R.drawable.noimg)
-                .error(R.drawable.noimg)
-                .into(it.imageView)*/
+
+            Glide.with(holder.viewDataBinding.root.context)
+                .load(albums[position].cover)
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .into(holder.viewDataBinding.imageView)
         }
 
     }

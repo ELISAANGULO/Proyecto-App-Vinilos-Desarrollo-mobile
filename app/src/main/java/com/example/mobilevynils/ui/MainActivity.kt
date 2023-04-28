@@ -9,7 +9,7 @@ import com.example.mobilevynils.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 import androidx.fragment.app.Fragment
-import com.example.mobilevynils.AlbumFragment
+import com.example.mobilevynils.ui.fragments.AlbumFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
