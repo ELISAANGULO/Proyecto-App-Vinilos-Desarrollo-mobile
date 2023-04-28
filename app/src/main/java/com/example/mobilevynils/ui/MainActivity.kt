@@ -2,37 +2,50 @@ package com.example.mobilevynils.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupActionBarWithNavController
+
 import com.example.mobilevynils.R
 import com.example.mobilevynils.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
+import androidx.fragment.app.Fragment
+import com.example.mobilevynils.ui.fragments.AlbumFragment
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    lateinit var bottomNav : BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        bottomNav = findViewById(R.id.nav_view) as BottomNavigationView
+        loadFragment(AlbumFragment())
+        bottomNav.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.navigation_albums -> {
+                    loadFragment(AlbumFragment())
+                    true
+                }
+                R.id.navigation_artists -> {
+                    loadFragment(ArtistaFragment())
+                    true
+                }
 
-        // Get the navigation host fragment from this Activity
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        // Instantiate the navController using the NavHostFragment
-        navController = navHostFragment.navController
-        // Make sure actions in the ActionBar get propagated to the NavController
-        Log.d("act", navController.toString())
-        setSupportActionBar(findViewById(R.id.my_toolbar))
-        setupActionBarWithNavController(navController)
+                else -> {
+                    loadFragment(AlbumFragment())
+                    true
+                }
+            }
+        }
+
     }
 
-    /*
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
+    private  fun loadFragment(fragment: Fragment){
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container,fragment)
+        transaction.commit()
     }
-
-     */
 
 }
