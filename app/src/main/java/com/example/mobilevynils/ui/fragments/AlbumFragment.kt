@@ -35,7 +35,7 @@ class AlbumFragment : Fragment() {
         _binding = FragmentAlbumBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModelAdapter = AlbumsAdapter()
-        mSwipeRefreshLayout = view.findViewById(R.id.swipe_refresh_albums)
+
         mSwipeRefreshLayout?.setOnRefreshListener {
             viewModel.forceRefreshDataFromNetwork()
             val handler = Handler()
