@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/albumes_fragment"
-        android:name="com.example.mobilevynils.AlbumFragment"
+        android:name="com.example.mobilevynils.ui.fragments.AlbumFragment"
         android:label="Artistas favortitos de elisa"
         tools:layout="@layout/fragment_album" >
 

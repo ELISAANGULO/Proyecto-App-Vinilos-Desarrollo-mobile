@@ -1,4 +1,4 @@
-package com.example.mobilevynils
+package com.example.mobilevynils.ui.fragments
 
 import android.os.Bundle
 import android.os.Handler
@@ -8,8 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -17,7 +15,6 @@ import com.example.mobilevynils.R
 import com.example.mobilevynils.ui.adapter.AlbumsAdapter
 import com.example.mobilevynils.databinding.FragmentAlbumBinding
 import com.example.mobilevynils.viewModels.AlbumViewModel
-import java.lang.Exception
 
 
 class AlbumFragment : Fragment() {
@@ -71,7 +68,6 @@ class AlbumFragment : Fragment() {
         var forceRefresh = false
         /*try {
             val args: AlbumFragmentArgs by navArgs()
-
             if (args.forceRefresh)
             {
                 forceRefresh = true
