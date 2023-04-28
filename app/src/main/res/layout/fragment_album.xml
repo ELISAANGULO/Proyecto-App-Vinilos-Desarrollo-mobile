@@ -14,7 +14,7 @@
             android:id="@+id/bannerTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black"
+            android:background="#2D2D2D"
             android:padding="16dp"
             android:text="Álbumes"
             android:textColor="@color/white"
