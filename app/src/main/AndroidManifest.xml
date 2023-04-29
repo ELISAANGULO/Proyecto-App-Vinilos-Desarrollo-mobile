@@ -14,7 +14,8 @@
         android:theme="@style/Theme.MobileVynils"
         android:hardwareAccelerated="false"
         android:largeHeap="true"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".ui.MainActivity"
             android:exported="true">
