@@ -2,11 +2,11 @@
 Este proyecto se crea para la creación de un aplicativo móvil para la empresa TSDC
 
 
-Repositorio del Grupo: TEAM 11
+Repositorio del Grupo: **TEAM 11
 
 Obtener el código fuente de la aplicación
 Realice la clonación del proyecto en el lugar de su preferencia
-git clone 
+git clone https://github.com/ELISAANGULO/Proyecto-App-Vinilos-Desarrollo-mobile.git
 
 
 Ejecutar la aplicación
