@@ -9,6 +9,7 @@ import com.example.mobilevynils.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 import androidx.fragment.app.Fragment
+import com.example.mobilevynils.CollectorFragment
 import com.example.mobilevynils.ui.fragments.AlbumFragment
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +25,12 @@ class MainActivity : AppCompatActivity() {
         loadFragment(AlbumFragment())
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
+                R.id.navigation_collectors->
+                {
+                    loadFragment(CollectorFragment())
+                    true
+                }
+
                 R.id.navigation_albums -> {
                     loadFragment(AlbumFragment())
                     true
@@ -34,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 else -> {
-                    loadFragment(AlbumFragment())
+                    loadFragment(ArtistaFragment())
                     true
                 }
             }
