@@ -48,33 +48,7 @@ class CollectorViewModel(application: Application) :  AndroidViewModel(applicati
         )
     }
 
-    /*fun pushData(album:Album) {
-        try {
-            viewModelScope.launch(Dispatchers.Default) {
-                withContext(Dispatchers.IO) {
-                    val response = albumsRepository.pushData(album)
-                    println("Rpsonse is")
-                    println(response)
-                }
-                _eventNetworkError.postValue(false)
-                _isNetworkErrorShown.postValue(false)
-            }
-        }
-        catch (e: Exception) {
-            _eventNetworkError.value = true
-        }
-    }*/
 
-    fun forceRefreshDataFromNetwork() {
-        collectorsRepository.refreshData({
-            _collectors.postValue(it)
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        },{
-            _eventNetworkError.value = true
-        }
-        )
-    }
 
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true

@@ -28,8 +28,7 @@ class ArtistViewModel(application: Application) :  AndroidViewModel(application)
     val isNetworkErrorShown: LiveData<Boolean>
         get() = _isNetworkErrorShown
     private var _imageBitmap = MutableLiveData<Bitmap>()
-    val imageBitmap: LiveData<Bitmap>
-        get() = _imageBitmap
+
     init {
         refreshDataFromNetwork()
     }

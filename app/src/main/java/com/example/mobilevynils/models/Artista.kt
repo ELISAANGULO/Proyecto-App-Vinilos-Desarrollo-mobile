@@ -9,11 +9,7 @@ data class Artista(
     val image: String,
     val description: String,
     val birthDate: String
-    /*
-    val albums: List<Album>,
-    val performerPrizes: List<PerformerPrize>,
 
-     */
 )
 
 
