@@ -43,7 +43,7 @@ class AlbumFragment : Fragment() {
         recyclerView.layoutManager =  GridLayoutManager(context, 2)
         recyclerView.adapter = viewModelAdapter
     }
-
+    //Orale
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val activity = requireNotNull(this.activity) {
