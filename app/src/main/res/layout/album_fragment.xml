@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.mobilevynils.AlbumFragment">
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -19,17 +14,19 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="80dp"
-        android:layout_marginTop="200dp"
-        tools:listitem="@layout/album_item"/>
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        app:layout_constraintTop_toBottomOf="@id/headerAlbumImage"
+        tools:listitem="@layout/album_item" />
 
     <!-- Agrega la imagen encima del LinearLayout -->
-    <androidx.appcompat.widget.AppCompatImageView
+    <ImageView
         android:id="@+id/headerAlbumImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
         android:adjustViewBounds="false"
         android:scaleType="centerInside"
-        android:src="@drawable/vicente"/>
-</FrameLayout>
+        android:src="@drawable/vicente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
