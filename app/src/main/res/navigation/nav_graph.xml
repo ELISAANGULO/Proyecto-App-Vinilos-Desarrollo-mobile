@@ -31,6 +31,9 @@
         android:name="com.example.mobilevynils.CollectorFragment"
         android:label="collector_fragment"
         tools:layout="@layout/collector_fragment" >
+        <action
+            android:id="@+id/collector_list_to_detail"
+                app:destination="@id/CollectorDetailFragment" />
 
     </fragment>
 
@@ -39,6 +42,14 @@
         android:name="com.example.mobilevynils.AlbumDetailFragment"
         android:label="album_detail_fragment"
         tools:layout="@layout/album_detail_fragment" >
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/CollectorDetailFragment"
+        android:name="com.example.mobilevynils.CollectorDetailFragment"
+        android:label="collector_detail_fragment"
+        tools:layout="@layout/collector_detail_fragment" >
 
     </fragment>
 </navigation>
