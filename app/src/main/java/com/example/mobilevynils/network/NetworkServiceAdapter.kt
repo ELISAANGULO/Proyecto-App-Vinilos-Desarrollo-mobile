@@ -17,6 +17,7 @@ import com.example.mobilesvynilis.models.Collector
 import com.example.mobilesvynilis.models.Comment
 import com.example.mobilesvynilis.models.Track
 import com.example.mobilevynils.models.Performer
+import com.example.mobilevynils.models.Prize
 
 import org.json.JSONArray
 import kotlin.coroutines.resume
@@ -144,26 +145,6 @@ class NetworkServiceAdapter constructor(context: Context) {
                 })
         )
     }
-    fun getArtistas(onComplete: (resp: List<Artista>) -> Unit, onError: (error:VolleyError)->Unit)
-    {
-
-        requestQueue.add(getRequest("musicians",
-            Response.Listener<String> { response ->
-                Log.d("tagb", response)
-                val resp = JSONArray(response)
-                val list = mutableListOf<Artista>()
-                for (i in 0 until resp.length()) {
-                    val item = resp.getJSONObject(i)
-                    list.add(i, Artista(id = item.getInt("id"),name = item.getString("name"), image = item.getString("image"), description = item.getString("description"), birthDate = item.getString("birthDate")))
-                }
-                onComplete(list)
-            },
-            Response.ErrorListener {
-                onError(it)
-                Log.d("", it.message.toString())
-            }))
-
-    }
 
     fun getCollectors(onComplete:(resp:List<Collector>)->Unit, onError: (error:VolleyError)->Unit) {
         requestQueue.add(getRequest("collectors",
@@ -221,4 +202,116 @@ class NetworkServiceAdapter constructor(context: Context) {
     private fun putRequest(path: String, body: JSONObject, responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
         return  JsonObjectRequest(Request.Method.PUT, BASE_URL+path, body, responseListener, errorListener)
     }
+
+    suspend fun getArtists() = suspendCoroutine<List<Artista>> { cont ->
+        requestQueue.add(
+            getRequest("musicians",
+                { response ->
+                    Log.d("ResponseGelAllArtists", response)
+                    val resp = JSONArray(response)
+                    val list = mutableListOf<Artista>()
+                    val listAlbums = mutableListOf<Album>()
+                    for (i in 0 until resp.length()) {
+                        val item = resp.getJSONObject(i)
+                        val respAlbums = item.getJSONArray("albums")
+                        for (j in 0 until respAlbums.length()) {
+                            val itemAlbum = respAlbums.getJSONObject(j)
+                            listAlbums.add(
+                                j, Album(
+                                    albumId = itemAlbum.getInt("id"),
+                                    name = itemAlbum.optString("name"),
+                                    cover = itemAlbum.optString("cover"),
+                                    releaseDate = itemAlbum.optString("releaseDate"),
+                                    description = itemAlbum.optString("description"),
+                                    genre = itemAlbum.optString("genre"),
+                                    recordLabel = itemAlbum.optString("recordLabel"),
+                                    tracks = null,
+                                    performers = null,
+                                    comments = null
+                                )
+                            )
+                        }
+
+                        list.add(
+                            i,
+                            Artista(
+                                artistId = item.getInt("id"),
+                                name = item.optString("name"),
+                                birthDate = item.optString("birthDate").substring(0, 10),
+                                image = item.optString("image"),
+                                description = item.optString("description"),
+                                albums = listAlbums,
+                                prizes = null
+                            )
+                        )
+                    }
+                    Log.d("ArtistsList", list.toString())
+                    cont.resume(list)
+                },
+                {
+                    cont.resumeWithException(it)
+                    Log.d("", it.message.toString())
+                })
+        )
+    }
+
+    suspend fun getArtist(musicianId: Int) = suspendCoroutine { cont ->
+        var artist: Artista?
+        requestQueue.add(
+            getRequest("musicians/$musicianId",
+                { response ->
+                    Log.d("ResponseGetMusician", response)
+                    val resp = JSONObject(response)
+                    val listAlbums = mutableListOf<Album>()
+
+                    val respAlbums = resp.getJSONArray("albums")
+                    for (j in 0 until respAlbums.length()) {
+                        val itemAlbum = respAlbums.getJSONObject(j)
+                        listAlbums.add(
+                            j, Album(
+                                albumId = itemAlbum.getInt("id"),
+                                name = itemAlbum.optString("name"),
+                                cover = itemAlbum.optString("cover"),
+                                releaseDate = itemAlbum.optString("releaseDate"),
+                                description = itemAlbum.optString("description"),
+                                genre = itemAlbum.optString("genre"),
+                                recordLabel = itemAlbum.optString("recordLabel"),
+                                tracks = null,
+                                performers = null,
+                                comments = null
+                            )
+                        )
+                    }
+                    val listPrizes = mutableListOf<Prize>()
+                    val respPrizes = resp.getJSONArray("performerPrizes")
+                    for (k in 0 until respPrizes.length()) {
+                        val itemPrize = respPrizes.getJSONObject(k)
+                        val prize = itemPrize.getJSONObject("prize")
+                        listPrizes.add(
+                            k, Prize(
+                                prizeId = itemPrize.getInt("id"),
+                                name = prize.optString("name"),
+                                description = prize.optString("description"),
+                                organization = prize.optString("organization"),
+                                premiationDate = itemPrize.optString("premiationDate")
+                            )
+                        )
+                    }
+                    artist = Artista(
+                        artistId = resp.getInt("id"),
+                        name = resp.optString("name"),
+                        birthDate = resp.optString("birthDate").substring(0, 10),
+                        image = resp.optString("image"),
+                        description = resp.optString("description"),
+                        albums = listAlbums,
+                        prizes = listPrizes
+                    )
+                    cont.resume(artist!!)
+                },
+                {
+                    cont.resumeWithException(it)
+                })
+        )
+    }
+
 }

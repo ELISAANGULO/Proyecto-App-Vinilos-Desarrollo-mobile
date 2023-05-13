@@ -10,11 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mobilesvynilis.models.Artista
 import com.example.mobilesvynilis.models.Collector
 import com.example.mobilevynils.databinding.CollectorFragmentBinding
 import com.example.mobilevynils.ui.adapter.CollectorsAdapter
-import com.example.mobilevynils.viewModels.ArtistViewModel
 import com.example.mobilevynils.viewModels.CollectorViewModel
 
 class CollectorFragment : Fragment() {

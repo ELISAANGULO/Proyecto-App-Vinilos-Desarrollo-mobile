@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             // menu should be considered as top level destinations.
             val appBarConfiguration = AppBarConfiguration(
                 setOf(
-                    R.id.albumes_fragment, R.id.collectorFragment, R.id.artistaFragment
+                    R.id.albumes_fragment, R.id.collectorFragment, R.id.artistFragment
                 )
             )
             setSupportActionBar(findViewById(R.id.my_toolbar))
