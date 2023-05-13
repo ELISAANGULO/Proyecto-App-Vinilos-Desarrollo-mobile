@@ -15,6 +15,8 @@ import com.example.mobilesvynilis.models.Album
 import com.example.mobilesvynilis.models.Artista
 import com.example.mobilesvynilis.models.Collector
 import com.example.mobilesvynilis.models.Comment
+import com.example.mobilesvynilis.models.Track
+import com.example.mobilevynils.models.Performer
 
 import org.json.JSONArray
 import kotlin.coroutines.resume
@@ -37,6 +39,7 @@ class NetworkServiceAdapter constructor(context: Context) {
         // applicationContext keeps you from leaking the Activity or BroadcastReceiver if someone passes one in.
         Volley.newRequestQueue(context.applicationContext)
     }
+    private var album: HashMap<Int, Album> = hashMapOf()
     /*fun getAlbums(onComplete:(resp:List<Album>)->Unit, onError: (error:VolleyError)->Unit){
         requestQueue.add(getRequest("albums",
             Response.Listener<String> { response ->
@@ -59,7 +62,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                 val list = mutableListOf<Album>()
                 for (i in 0 until resp.length()) {
                     val item = resp.getJSONObject(i)
-                    list.add(i, Album(albumId = item.getInt("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = item.getString("releaseDate"), genre = item.getString("genre"), description = item.getString("description")))
+                    list.add(i, Album(albumId = item.getInt("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = item.getString("releaseDate"), genre = item.getString("genre"), description = item.getString("description"), tracks = null, performers = null, comments = null))
                 }
                 cont.resume(list)
             },
@@ -67,7 +70,80 @@ class NetworkServiceAdapter constructor(context: Context) {
                 cont.resumeWithException(it)
             }))
     }
+    suspend fun getAlbum(albumId: Int) = suspendCoroutine { cont ->
+        var album: Album?
+        requestQueue.add(
+            getRequest("albums/$albumId",
+                { response ->
+                    Log.d("tagb", response)
+                    val resp = JSONObject(response)
 
+                    val commentsList: JSONArray = resp.getJSONArray("comments")
+                    val comments = mutableListOf<Comment>()
+                    var comment: JSONObject?
+
+                    for (i in 0 until commentsList.length()) {
+                        comment = commentsList.getJSONObject(i)
+                        comments.add(
+                            Comment(
+                                comment.optString("description"),
+                                comment.getInt("rating").toString(), albumId
+                            )
+                        )
+                    }
+
+                    val performers = mutableListOf<Performer>()
+                    if (resp.has("performers")) {
+                        val performersJsonArray = resp.getJSONArray("performers")
+                        for (index in 0 until performersJsonArray.length()) {
+                            val perfItem = performersJsonArray.getJSONObject(index)
+                            performers.add(
+                                Performer(
+                                    performerId = perfItem.getInt("id"),
+                                    name = perfItem.optString("name"),
+                                    image = perfItem.optString("image"),
+                                    description = perfItem.optString("description"),
+                                    creationDate = perfItem.optString("creationDate")
+                                )
+                            )
+                        }
+                    }
+
+                    val tracksList: JSONArray = resp.getJSONArray("tracks")
+                    val tracks = mutableListOf<Track>()
+                    var track: JSONObject?
+
+                    for (i in 0 until tracksList.length()) {
+                        track = tracksList.getJSONObject(i)
+                        tracks.add(
+                            Track(
+                                track.getInt("id"),
+                                track.optString("name"),
+                                track.optString("duration")
+                            )
+                        )
+                    }
+
+                    album = Album(
+                        albumId = resp.getInt("id"),
+                        name = resp.optString("name"),
+                        cover = resp.optString("cover"),
+                        recordLabel = resp.optString("recordLabel"),
+                        releaseDate = resp.optString("releaseDate"),
+                        genre = resp.optString("genre"),
+                        description = resp.optString("description"),
+                        comments = comments,
+                        performers = performers,
+                        tracks = tracks
+                    )
+
+                    cont.resume(album!!)
+                },
+                {
+                    cont.resumeWithException(it)
+                })
+        )
+    }
     fun getArtistas(onComplete: (resp: List<Artista>) -> Unit, onError: (error:VolleyError)->Unit)
     {
 

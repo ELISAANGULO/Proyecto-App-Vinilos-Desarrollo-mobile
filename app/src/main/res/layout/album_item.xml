@@ -4,7 +4,7 @@
 
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="album"  type="com.example.mobilesvynilis.models.Album"/>
+        <variable name="albums"  type="com.example.mobilesvynilis.models.Album"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
         <ImageView
             android:id="@+id/albumItemImageView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/black"
-            android:text="@{album.name}"
+            android:text="@{albums.name}"
             android:textAlignment="textStart"
             android:textColor="@color/primaryTextColor"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/black"
-            android:text="@{album.genre}"
+            android:text="@{albums.genre}"
             android:textAlignment="textStart"
             android:textColor="@color/secondaryTextColor"
             app:layout_constraintStart_toStartOf="parent"

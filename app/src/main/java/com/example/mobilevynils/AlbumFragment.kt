@@ -10,12 +10,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobilesvynilis.models.Album
 import com.example.mobilevynils.databinding.AlbumFragmentBinding
 import com.example.mobilevynils.ui.adapter.AlbumsAdapter
-import com.example.mobilevynils.viewModels.AlbumViewModel
+import com.example.mobilevynils.viewModels.AlbumsViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +25,7 @@ class AlbumFragment : Fragment() {
     private var _binding: AlbumFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewModel: AlbumViewModel
+    private lateinit var viewModel: AlbumsViewModel
     private var viewModelAdapter: AlbumsAdapter? = null
 
     override fun onCreateView(
@@ -54,7 +53,7 @@ class AlbumFragment : Fragment() {
             "You can only access the viewModel after onActivityCreated()"
         }
         activity.actionBar?.title = getString(R.string.title_albumes)
-        viewModel = ViewModelProvider(this, AlbumViewModel.Factory(activity.application)).get(AlbumViewModel::class.java)
+        viewModel = ViewModelProvider(this, AlbumsViewModel.Factory(activity.application)).get(AlbumsViewModel::class.java)
         viewModel.albums.observe(viewLifecycleOwner, Observer<List<Album>> {
             it.apply {
                 viewModelAdapter!!.albums = this
