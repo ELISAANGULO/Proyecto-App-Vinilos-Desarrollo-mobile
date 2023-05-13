@@ -2,57 +2,46 @@ package com.example.mobilevynils.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.FrameLayout
 import androidx.navigation.NavController
-
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.example.mobilevynils.R
 import com.example.mobilevynils.databinding.ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
-
-import androidx.fragment.app.Fragment
-import com.example.mobilevynils.CollectorFragment
-import com.example.mobilevynils.ui.fragments.AlbumFragment
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-    lateinit var bottomNav : BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        bottomNav = findViewById(R.id.nav_view) as BottomNavigationView
-        loadFragment(AlbumFragment())
-        bottomNav.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.navigation_collectors->
-                {
-                    loadFragment(CollectorFragment())
-                    true
-                }
-
-                R.id.navigation_albums -> {
-                    loadFragment(AlbumFragment())
-                    true
-                }
-                R.id.navigation_artists -> {
-                    loadFragment(ArtistaFragment())
-                    true
-                }
-
-                else -> {
-                    loadFragment(ArtistaFragment())
-                    true
-                }
-            }
+        val navView: BottomNavigationView = binding.navView
+        // Get the navigation host fragment from this Activity
+        if (findViewById<FrameLayout>(R.id.nav_host_fragment)!=null){
+            val navHostFragment = supportFragmentManager
+                .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+            // Instantiate the navController using the NavHostFragment
+            navController = navHostFragment.navController
+            // menu should be considered as top level destinations.
+            val appBarConfiguration = AppBarConfiguration(
+                setOf(
+                    R.id.albumes_fragment, R.id.collectorFragment, R.id.artistaFragment
+                )
+            )
+            setSupportActionBar(findViewById(R.id.my_toolbar))
+            setupActionBarWithNavController(navController, appBarConfiguration)
+            navView.setupWithNavController(navController)
         }
 
+
     }
 
-    private  fun loadFragment(fragment: Fragment){
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container,fragment)
-        transaction.commit()
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
-
 }
