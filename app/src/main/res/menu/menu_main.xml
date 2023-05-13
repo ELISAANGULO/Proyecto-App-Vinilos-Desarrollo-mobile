@@ -12,7 +12,7 @@
         android:title="@string/title_coleccionistas" />
 
     <item
-        android:id="@+id/artistaFragment"
+        android:id="@+id/artistFragment"
         android:icon="@drawable/ic_artistas"
         android:title="@string/title_artistas" />
 
