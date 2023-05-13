@@ -17,10 +17,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.example.mobilesvynilis.models.Album
-import com.example.mobilevynils.AlbumFragmentDirections
 import com.example.mobilevynils.R
 import com.example.mobilevynils.databinding.AlbumItemBinding
 import com.example.mobilevynils.models.Performer
+import com.example.mobilevynils.ui.fragments.AlbumFragmentDirections
 
 class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumsViewHolder>(){
 

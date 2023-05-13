@@ -1,26 +1,21 @@
-package com.example.mobilevynils
+package com.example.mobilevynils.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mobilevynils.R
 import com.example.mobilevynils.databinding.AlbumDetailFragmentBinding
 import com.example.mobilevynils.ui.adapter.AlbumAdapter
 import com.example.mobilevynils.ui.adapter.AlbumTracksAdapter
 import com.example.mobilevynils.viewModels.AlbumViewModel
-import com.example.mobilevynils.viewModels.AlbumsViewModel
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -62,8 +57,11 @@ class AlbumDetailFragment : Fragment() {
             "You can only access the viewModel after onActivityCreated()"
         }
         activity.actionBar?.title = getString(R.string.title_albumes)
-        Log.i("AlbumId","${args.albumId}")
-        viewModel = ViewModelProvider(this, AlbumViewModel.Factory(activity.application, args.albumId))[AlbumViewModel::class.java]
+        Log.i("AlbumId", "${args.albumId}")
+        viewModel = ViewModelProvider(
+            this,
+            AlbumViewModel.Factory(activity.application, args.albumId)
+        )[AlbumViewModel::class.java]
         viewModel.album.observe(viewLifecycleOwner) {
             it.apply {
                 viewModelAdapter!!.album = this

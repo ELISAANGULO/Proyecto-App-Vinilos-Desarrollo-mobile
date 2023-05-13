@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/albumes_fragment"
-        android:name="com.example.mobilevynils.AlbumFragment"
+        android:name="com.example.mobilevynils.ui.fragments.AlbumFragment"
         android:label="Albumes favoritos de Elisa"
         tools:layout="@layout/album_item" >
         <action
@@ -35,8 +35,8 @@
 
     <fragment
         android:id="@+id/AlbumDetailFragment"
-        android:name="com.example.mobilevynils.AlbumDetailFragment"
-        android:label="album_detail_fragment"
+        android:name="com.example.mobilevynils.ui.fragments.AlbumDetailFragment"
+        android:label="Album Details"
         tools:layout="@layout/album_detail_fragment" >
         <argument
             android:name="albumId"
