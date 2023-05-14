@@ -1,26 +1,24 @@
 package com.example.mobilevynils.viewModels
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import android.util.Log
+import androidx.lifecycle.*
 import com.example.mobilesvynilis.models.Album
 import com.example.mobilesvynilis.models.Collector
+import com.example.mobilesvynilis.repositories.AlbumRepository
 import com.example.mobilevynils.repositories.CollectorsRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class CollectorViewModel(application: Application) :  AndroidViewModel(application) {
+class CollectorViewModel(application: Application, collectorId: Int) :  AndroidViewModel(application) {
 
+    private val _collector = MutableLiveData<Collector>()
+    private val CollectorRepository = CollectorsRepository(application)
+    private val _collectorId = collectorId
 
-
-
-    private val collectorsRepository = CollectorsRepository(application)
-
-    private val _collectors = MutableLiveData<List<Collector>>()
-
-    val colectors: LiveData<List<Collector>>
-        get() = _collectors
+    val collector: LiveData<Collector>
+        get() = _collector
 
     private var _eventNetworkError = MutableLiveData(false)
 
@@ -33,62 +31,38 @@ class CollectorViewModel(application: Application) :  AndroidViewModel(applicati
         get() = _isNetworkErrorShown
 
     init {
-        refreshData()
+        refreshDataFromNetwork()
     }
 
-    private fun refreshData() {
-
-        collectorsRepository.refreshData({
-            _collectors.postValue(it)
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        },{
-            _eventNetworkError.value = true
-        }
-        )
-    }
-
-    /*fun pushData(album:Album) {
+    private fun refreshDataFromNetwork() {
         try {
-            viewModelScope.launch(Dispatchers.Default) {
-                withContext(Dispatchers.IO) {
-                    val response = albumsRepository.pushData(album)
-                    println("Rpsonse is")
-                    println(response)
+            viewModelScope.launch (Dispatchers.Default){
+                withContext(Dispatchers.IO){
+                    Log.i("ViewModel","${_collectorId}")
+                    var data = CollectorRepository.refreshCollectorData(_collectorId)
+                    _collector.postValue(data)
                 }
                 _eventNetworkError.postValue(false)
                 _isNetworkErrorShown.postValue(false)
             }
         }
-        catch (e: Exception) {
+        catch (e:Exception){
             _eventNetworkError.value = true
         }
-    }*/
-
-    fun forceRefreshDataFromNetwork() {
-        collectorsRepository.refreshData({
-            _collectors.postValue(it)
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        },{
-            _eventNetworkError.value = true
-        }
-        )
     }
 
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
     }
 
-    class Factory(val app: Application) : ViewModelProvider.Factory {
+    class Factory(val app: Application, val collectorId:Int) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            Log.i("ViewModel","Factory ${collectorId}")
             if (modelClass.isAssignableFrom(CollectorViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return CollectorViewModel(app) as T
+                return CollectorViewModel(app, collectorId ) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
-
-
         }
     }
 }

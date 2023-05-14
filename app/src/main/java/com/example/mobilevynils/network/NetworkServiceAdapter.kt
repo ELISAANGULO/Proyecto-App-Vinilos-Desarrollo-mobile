@@ -20,6 +20,7 @@ import com.example.mobilevynils.models.Performer
 import com.example.mobilevynils.models.Prize
 
 import org.json.JSONArray
+import java.text.SimpleDateFormat
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -312,6 +313,42 @@ class NetworkServiceAdapter constructor(context: Context) {
                     cont.resumeWithException(it)
                 })
         )
+    }
+    suspend fun getCollector(id:Int?)= suspendCoroutine<Collector>{ cont ->
+        requestQueue.add(getRequest("collectors/"+id+"/albums",
+            Response.Listener<String> { response ->
+                val resp = JSONArray(response)
+                var item:JSONObject? = null
+                var coleccionista = Collector();
+                val list = mutableListOf<Album>()
+                lateinit var album : JSONObject
+                lateinit var collector : JSONObject
+                val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+                val formatter = SimpleDateFormat("yyyy")
+                for (i in 0 until resp.length()) {
+                    item = resp.getJSONObject(i)
+                    if(i == 0)
+                    {
+                        collector = item.getJSONObject("collector")
+                        coleccionista.collectorId = collector.getInt("id");
+                        coleccionista.name = collector.getString("name");
+                        coleccionista.email = collector.getString("email");
+                        coleccionista.telephone = collector.getString("telephone");
+                    }
+                    album = item.getJSONObject("album")
+                    if (album.length()>0)
+                    {
+                        val fecha = formatter.format(parser.parse(album.getString("releaseDate")))
+                        list.add(i,Album(albumId = album.getInt("id"),name = album.getString("name"), cover = album.getString("cover"), recordLabel = album.getString("recordLabel"), releaseDate = fecha, genre = album.getString("genre"), description = album.getString("description"), tracks = null, performers = null, comments = null))
+                    }
+                }
+                coleccionista.albums = list;
+
+                cont.resume(coleccionista)
+            },
+            Response.ErrorListener {
+                cont.resumeWithException(it)
+            }))
     }
 
 }
