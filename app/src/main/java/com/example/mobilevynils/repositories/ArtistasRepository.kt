@@ -13,12 +13,12 @@ class ArtistasRepository (val application: Application){
 
         val potentialResp = CacheManager.getInstance(application.applicationContext).getArtists()
         return if (potentialResp.isEmpty()) {
-            Log.d("Cache decision", "get from network")
+            Log.d(" Decision Cache", "get from network")
             val artists = NetworkServiceAdapter.getInstance(application).getArtists()
             CacheManager.getInstance(application.applicationContext).addArtists(artists)
             artists
         } else {
-            Log.d("Cache decision", "return ${potentialResp.size} elements from cache")
+            Log.d(" Decision Cache", "return ${potentialResp.size} elementos para el cache")
             potentialResp
         }
     }
@@ -28,12 +28,12 @@ class ArtistasRepository (val application: Application){
         val potentialResp =
             CacheManager.getInstance(application.applicationContext).getArtist(musicianId)
         return if (potentialResp == null) {
-            Log.d("Cache decision", "get from network")
+            Log.d("Decision Cache", "get from network")
             val artist = NetworkServiceAdapter.getInstance(application).getArtist(musicianId)
             CacheManager.getInstance(application.applicationContext).addArtist(musicianId, artist)
             artist
         } else {
-            Log.d("Cache decision", "return ${potentialResp.name} element from cache")
+            Log.d("Decision Cache", "return ${potentialResp.name}elementos para el cache")
             potentialResp
         }
     }

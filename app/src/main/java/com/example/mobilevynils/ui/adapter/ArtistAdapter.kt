@@ -60,7 +60,7 @@ class ArtistAdapter: RecyclerView.Adapter<ArtistAdapter.ArtistViewHolder>() {
             val LAYOUT = R.layout.artist_detail_item
         }
         fun bind(artist: Artista?) {
-            Log.d("ArtistAdapterArtist", artist.toString())
+            Log.d("ArtistaAdapterartist", artist.toString())
             if (artist != null) {
                 Glide.with(itemView)
                     .load(artist.image.toUri().buildUpon().scheme("https").build())
