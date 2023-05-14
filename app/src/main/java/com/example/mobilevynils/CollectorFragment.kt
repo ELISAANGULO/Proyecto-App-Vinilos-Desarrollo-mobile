@@ -13,13 +13,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobilesvynilis.models.Collector
 import com.example.mobilevynils.databinding.CollectorFragmentBinding
 import com.example.mobilevynils.ui.adapter.CollectorsAdapter
-import com.example.mobilevynils.viewModels.CollectorViewModel
+import com.example.mobilevynils.viewModels.CollectorsViewModel
 
 class CollectorFragment : Fragment() {
     private var _binding: CollectorFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewModel: CollectorViewModel
+    private lateinit var viewModel: CollectorsViewModel
     private var viewModelAdapter: CollectorsAdapter? = null
 
     override fun onCreateView(
@@ -58,9 +58,9 @@ class CollectorFragment : Fragment() {
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        activity.actionBar?.title = getString(R.string.title_artistas)
-        viewModel = ViewModelProvider(this, CollectorViewModel.Factory(activity.application)).get(
-            CollectorViewModel::class.java)
+        activity.actionBar?.title = getString(R.string.title_collectors)
+        viewModel = ViewModelProvider(this, CollectorsViewModel.Factory(activity.application)).get(
+            CollectorsViewModel::class.java)
         viewModel.colectors.observe(viewLifecycleOwner, Observer<List<Collector>> {
             it.apply {
                 viewModelAdapter!!.collectors = this

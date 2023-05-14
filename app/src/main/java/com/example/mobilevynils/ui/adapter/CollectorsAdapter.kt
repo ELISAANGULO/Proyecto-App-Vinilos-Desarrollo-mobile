@@ -1,13 +1,16 @@
 package com.example.mobilevynils.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobilesvynilis.models.Collector
 import androidx.navigation.findNavController
-import com.bumptech.glide.Glide
+
+import com.example.mobilevynils.CollectorFragmentDirections
 
 
 import com.example.mobilevynils.R
@@ -34,6 +37,9 @@ class CollectorsAdapter : RecyclerView.Adapter<CollectorsAdapter.CollectorViewHo
     override fun onBindViewHolder(holder: CollectorViewHolder, position: Int) {
         holder.viewDataBinding.also {
             it.collector = collectors[position]
+            holder.viewDataBinding.root.setOnClickListener {
+
+            }
 
 
 
@@ -44,6 +50,12 @@ class CollectorsAdapter : RecyclerView.Adapter<CollectorsAdapter.CollectorViewHo
 
 
         holder.viewDataBinding.root.setOnClickListener {
+            Log.i("CollectorSelected", "Collector numero ${collectors[position]}")
+            //Navigation.createNavigateOnClickListener(R.id.collector_list_to_detail, null)
+            //val bundle = bundleOf("Collectors" to  collectors[position].name)
+            val action = CollectorFragmentDirections.actionCollectorFragmentToCollectorDetailFragment(collectors[position].collectorId)
+            // Navigate using that action
+            holder.viewDataBinding.root.findNavController().navigate(action)
 
         }
     }
