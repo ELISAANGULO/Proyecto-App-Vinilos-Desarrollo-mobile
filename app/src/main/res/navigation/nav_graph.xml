@@ -3,24 +3,71 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/artistaFragment"
-    >
-
-    <fragment
-        android:id="@+id/artistaFragment"
-        android:name="com.example.mobilevynils.ui.ArtistaFragment"
-        android:label="Artistas favoritos de Elisa"
-        tools:layout="@layout/artista_fragment" >
-
-    </fragment>
-
+    app:startDestination="@id/albumes_fragment">
 
     <fragment
         android:id="@+id/albumes_fragment"
         android:name="com.example.mobilevynils.ui.fragments.AlbumFragment"
-        android:label="Artistas favortitos de elisa"
-        tools:layout="@layout/fragment_album" >
+        android:label="Albumes favoritos de Elisa"
+        tools:layout="@layout/album_item" >
+        <action
+            android:id="@+id/album_list_to_detail"
+            app:destination="@id/AlbumDetailFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/collectorFragment"
+        android:name="com.example.mobilevynils.CollectorFragment"
+        android:label="collector_fragment"
+        tools:layout="@layout/collector_fragment" >
+        <action
+            android:id="@+id/action_collectorFragment_to_collectorDetailFragment"
+            app:destination="@id/collectorDetailFragment" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/collectorDetailFragment"
+        android:name="com.example.mobilevynils.CollectorDetailFragment"
+        android:label="collector_detail_fragment"
+        tools:layout="@layout/fragment_collector_detail" >
+        <argument
+            android:name="collectorId"
+            app:argType="integer"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/AlbumDetailFragment"
+        android:name="com.example.mobilevynils.ui.fragments.AlbumDetailFragment"
+        android:label="Album Details"
+        tools:layout="@layout/album_detail_fragment" >
+        <argument
+            android:name="albumId"
+            app:argType="integer"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/artistFragment"
+        android:name="com.example.mobilevynils.ui.ArtistsFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/artist_item">
+        <action
+            android:id="@+id/action_artistFragment_to_artistDetailFragment"
+            app:destination="@id/artistDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/artistDetailFragment"
+        android:name="com.example.mobilevynils.ui.ArtistDetailFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_artist_detail">
+        <argument
+            android:name="artistId"
+            app:argType="integer" />
+    </fragment>
+
 
 </navigation>

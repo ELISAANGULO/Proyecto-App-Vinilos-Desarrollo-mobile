@@ -1,25 +1,21 @@
 package com.example.mobilevynils.viewModels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.mobilesvynilis.models.Album
-import com.example.mobilevynils.repositories.AlbumRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.Exception
+import com.example.mobilesvynilis.repositories.AlbumRepository
+class AlbumViewModel(application: Application, albumId: Int) :  AndroidViewModel(application) {
 
+    private val _album = MutableLiveData<Album>()
+    private val AlbumRepository = AlbumRepository(application)
+    private val _albumId = albumId
 
-class AlbumViewModel(application: Application, forceRefresh:Boolean) :  AndroidViewModel(application) {
-
-    private val forceRefresh = forceRefresh
-
-    private val albumsRepository = AlbumRepository(application)
-
-    private val _albums = MutableLiveData<List<Album>>()
-
-    val albums: LiveData<List<Album>>
-        get() = _albums
+    val album: LiveData<Album>
+        get() = _album
 
     private var _eventNetworkError = MutableLiveData(false)
 
@@ -32,61 +28,36 @@ class AlbumViewModel(application: Application, forceRefresh:Boolean) :  AndroidV
         get() = _isNetworkErrorShown
 
     init {
-        refreshData()
+        refreshDataFromNetwork()
     }
 
-    private fun refreshData() {
-        if(forceRefresh)
-        {
-            Thread.sleep(500)
-        }
-        albumsRepository.refreshData({
-            _albums.postValue(it)
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        },{
-            _eventNetworkError.value = true
-        }
-        )
-    }
-
-    /*fun pushData(album:Album) {
+    private fun refreshDataFromNetwork() {
         try {
-            viewModelScope.launch(Dispatchers.Default) {
-                withContext(Dispatchers.IO) {
-                    val response = albumsRepository.pushData(album)
-                    println("Rpsonse is")
-                    println(response)
+            viewModelScope.launch (Dispatchers.Default){
+                withContext(Dispatchers.IO){
+                    Log.i("ViewModel","${_albumId}")
+                    var data = AlbumRepository.refreshAlbumData(_albumId)
+                    _album.postValue(data)
                 }
                 _eventNetworkError.postValue(false)
                 _isNetworkErrorShown.postValue(false)
             }
         }
-        catch (e: Exception) {
+        catch (e:Exception){
             _eventNetworkError.value = true
         }
-    }*/
-
-    fun forceRefreshDataFromNetwork() {
-        albumsRepository.refreshData({
-            _albums.postValue(it)
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        },{
-            _eventNetworkError.value = true
-        }
-        )
     }
 
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
     }
 
-    class Factory(val app: Application,val forceRefresh: Boolean) : ViewModelProvider.Factory {
+    class Factory(val app: Application, val albumId:Int) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            Log.i("ViewModel","Factory ${albumId}")
             if (modelClass.isAssignableFrom(AlbumViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return AlbumViewModel(app,forceRefresh) as T
+                return AlbumViewModel(app, albumId) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

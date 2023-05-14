@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="artist"
+            type="com.example.mobilesvynilis.models.Artista" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/artistImage"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:contentDescription="T"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_artistas"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/ArtistName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@{artist.name}"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/artistImage"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/BiographyTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="10dp"
+            android:gravity="left"
+            android:text="@string/artist_detail_biography"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/ArtistName"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/BiographyDescription"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="10dp"
+            android:justificationMode="inter_word"
+            android:text="@{artist.description}"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/BiographyTitle"
+            tools:layout_editor_absoluteX="0dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
