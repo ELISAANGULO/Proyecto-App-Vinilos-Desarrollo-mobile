@@ -1,8 +1,10 @@
 package com.example.mobilesvynilis.models
 
 data class Collector (
-    val collectorId: Int,
-    val name:String,
-    val telephone:String,
-    val email:String
+    var collectorId:Int = -1,
+    var name:String = "",
+    var telephone:String = "",
+    var email:String = "",
+    var albums: List<Album> = emptyList()
 )
+
