@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.mobilevynils.R
 import com.example.mobilevynils.viewModels.AlbumCreateViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONObject
 import java.util.Calendar
 
@@ -63,7 +64,7 @@ class AlbumCreateFragment : Fragment() {
         }
 
 
-        val botonGuardar = view.findViewById<Button>(R.id.botonGuardarAlbum)
+        val botonGuardar = view.findViewById<FloatingActionButton>(R.id.botonGuardarAlbum)
         botonGuardar.setOnClickListener{
             var nombreAlbum = view.findViewById<EditText>(R.id.nombreAlbum).text.toString();
             var urlAlbum = view.findViewById<EditText>(R.id.urlAlbum).text.toString();
