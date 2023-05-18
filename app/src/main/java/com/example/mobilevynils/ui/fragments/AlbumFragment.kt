@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -16,6 +17,7 @@ import com.example.mobilevynils.R
 import com.example.mobilevynils.databinding.AlbumFragmentBinding
 import com.example.mobilevynils.ui.adapter.AlbumsAdapter
 import com.example.mobilevynils.viewModels.AlbumsViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class AlbumFragment : Fragment() {
     private var _binding: AlbumFragmentBinding? = null
@@ -31,6 +33,10 @@ class AlbumFragment : Fragment() {
         _binding = AlbumFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModelAdapter = AlbumsAdapter()
+        val botonCrearAlbum = view.findViewById<FloatingActionButton>(R.id.botonCrearAlbum)
+        botonCrearAlbum.setOnClickListener{
+            it.findNavController().navigate(R.id.albumCreateFragment)
+        }
         return view
     }
 

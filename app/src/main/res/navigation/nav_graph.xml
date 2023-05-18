@@ -68,6 +68,9 @@
             android:name="artistId"
             app:argType="integer" />
     </fragment>
-
+    <fragment
+        android:id="@+id/albumCreateFragment"
+        android:name="com.example.mobilevynils.ui.fragments.AlbumCreateFragment"
+        android:label="AlbumCreateFragment" />
 
 </navigation>
