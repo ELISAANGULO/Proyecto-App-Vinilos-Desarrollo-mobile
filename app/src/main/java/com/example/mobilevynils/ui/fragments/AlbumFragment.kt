@@ -1,6 +1,7 @@
 package com.example.mobilevynils.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.mobilesvynilis.models.Album
 import com.example.mobilevynils.R
 import com.example.mobilevynils.databinding.AlbumFragmentBinding
@@ -25,17 +27,24 @@ class AlbumFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: AlbumsViewModel
     private var viewModelAdapter: AlbumsAdapter? = null
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         _binding = AlbumFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModelAdapter = AlbumsAdapter()
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout)
         val botonCrearAlbum = view.findViewById<FloatingActionButton>(R.id.botonCrearAlbum)
         botonCrearAlbum.setOnClickListener{
             it.findNavController().navigate(R.id.albumCreateFragment)
+        }
+        swipeRefreshLayout.setOnRefreshListener {
+            Log.d("refreshAlbums","Refresh")
+            viewModel.refreshData(swipeRefreshLayout)
         }
         return view
     }

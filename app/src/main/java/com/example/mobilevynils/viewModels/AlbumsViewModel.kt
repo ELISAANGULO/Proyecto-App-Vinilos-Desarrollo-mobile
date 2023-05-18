@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.mobilesvynilis.models.Album
 import com.example.mobilesvynilis.repositories.AlbumRepository
 import kotlinx.coroutines.Dispatchers
@@ -51,7 +52,10 @@ class AlbumsViewModel(application: Application) :  AndroidViewModel(application)
             _eventNetworkError.value = true
         }
     }
-
+    fun refreshData(swipeRefreshLayout: SwipeRefreshLayout){
+        refreshDataFromNetwork()
+        swipeRefreshLayout.isRefreshing = false
+    }
 
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
