@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/layout">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1F1F1F"
+    android:orientation="vertical"
+    tools:context=".TracksDurationFragment">
+
+    <TextView
+        android:id="@+id/txtNameAlbum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:lineSpacingExtra="8sp"
+        android:text="Add Tracks"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:textStyle="italic" />
+    <View
+        android:id="@+id/dividerAddTracks"
+        android:layout_marginTop="2dp"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        tools:background="@color/white"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@id/txtNameAlbum"/>
+
+    <TextView
+        android:id="@+id/txtNameTrack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textStyle="bold"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white" />
+
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:inputType="textPersonName"
+        android:labelFor="@id/txtNameTrack"
+        android:minHeight="48dp"
+        android:hint="Name"
+        android:textColor="@color/white"
+        android:textColorHint="#F0F0F0" />
+
+    <TextView
+        android:id="@+id/txtNameDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Duration"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/duration"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/white"
+        android:hint="Duration"
+        android:inputType="textPersonName"
+        android:labelFor="@id/txtNameDuration"
+        android:minHeight="48dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="#F0F0F0" />
+
+
+
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:backgroundTint="@color/design_default_color_primary_dark"
+        android:padding="5dp"
+        android:text="Save"
+        android:textColor="?colorOnPrimary" />
+
+
+</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

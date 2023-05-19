@@ -112,7 +112,7 @@
             android:entries="@array/Genero"
             android:minHeight="30dp"
             android:padding="-10dp"
-            android:theme="@style/spinnerTheme" />
+            android:theme="@style/spinnerTheme"/>
 
         <TextView
             android:id="@+id/textView8"
@@ -135,6 +135,7 @@
             android:minHeight="30dp"
             android:padding="-10dp"
             android:popupBackground="@color/black"
+
             android:theme="@style/spinnerTheme"/>
 
         <TextView

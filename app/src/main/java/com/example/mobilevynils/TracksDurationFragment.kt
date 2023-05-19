@@ -77,3 +77,7 @@ class TracksDurationFragment (private var  viewModelAvm: AlbumViewModel, private
         get() = _isNetworkErrorShown
 
 }
+
+class AddTrackFragmentBinding {
+
+}
