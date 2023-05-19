@@ -4,7 +4,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -48,6 +47,10 @@ class AlbumAdapter: RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
             holder.bind(album!!)
         }
 
+
+
+
+
     }
 
     override fun getItemCount(): Int {
@@ -57,11 +60,14 @@ class AlbumAdapter: RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
 
     class AlbumViewHolder(val viewDataBinding: AlbumDetailItemBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root) {
+
         companion object {
             @LayoutRes
             val LAYOUT = R.layout.album_detail_item
         }
         fun bind(album: Album) {
+
+
             Glide.with(itemView)
                 .load(album.cover)
                 .apply(

@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/albumDetailRecyclerView"
         android:layout_width="match_parent"
@@ -25,6 +26,16 @@
         android:textStyle="bold|italic"
         android:textColor="@color/white"/>
 
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayoutTrackAlbumDetail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/album_tracks_rv"
         android:layout_width="match_parent"
@@ -32,5 +43,21 @@
         android:layout_marginTop="15dp"
         tools:listitem="@layout/album_detail_tracks_item"
         tools:layout_editor_absoluteX="0dp"/>
+        </ScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
     </LinearLayout>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/newTaskButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="@color/backgroundColorMenu"
+        app:fabSize="normal"
+        android:layout_gravity="end|bottom"
+        app:tint="@color/white"/>
+
 </FrameLayout>

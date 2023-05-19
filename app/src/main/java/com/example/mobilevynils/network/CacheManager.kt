@@ -5,6 +5,7 @@ import com.example.mobilesvynilis.models.Album
 import com.example.mobilesvynilis.models.Artista
 import com.example.mobilesvynilis.models.Collector
 import com.example.mobilesvynilis.models.Comment
+import com.example.mobilesvynilis.models.Track
 
 
 class CacheManager(context: Context) {
@@ -44,6 +45,12 @@ class CacheManager(context: Context) {
         }
 
     }
+
+    fun  deleteAlbum()
+    {
+        album = hashMapOf()
+    }
+
 
     fun getAlbum(albumId: Int): Album? {
         return if (album[albumId] != null) album[albumId] else null
