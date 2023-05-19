@@ -38,6 +38,9 @@ class CollectorsAdapter : RecyclerView.Adapter<CollectorsAdapter.CollectorViewHo
     override fun onBindViewHolder(holder: CollectorViewHolder, position: Int) {
         holder.viewDataBinding.also {
             it.collector = collectors[position]
+            holder.viewDataBinding.root.setOnClickListener {
+
+            }
 
 
 

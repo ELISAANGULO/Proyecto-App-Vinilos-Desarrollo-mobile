@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="track" type="com.example.mobilesvynilis.models.Track"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/TrackCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+                <TextView
+                    android:id="@+id/TrackName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dip"
+                    android:layout_marginStart="25dip"
+                    android:text="track_name"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:id="@+id/TrackTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="35dip"
+                    android:layout_marginTop="29dp"
+                    android:text="track_time"
+                    android:textSize="12sp"
+                    android:textColor="@color/white"
+                    />
+
+        </com.google.android.material.card.MaterialCardView>
+        <View
+            android:id="@+id/divider"
+            android:layout_marginTop="2dp"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            tools:background="@color/white"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toBottomOf="@id/TrackCard"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

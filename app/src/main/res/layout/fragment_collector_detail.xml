@@ -4,33 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.AlbumDetailFragment">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    tools:context=".CollectorDetailFragment">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/albumDetailRecyclerView"
+        android:id="@+id/collectorItemRv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/album_detail_item" />
+        tools:listitem="@layout/collector_detail_item"/>
     <TextView
-        android:id="@+id/title_tracks_tv"
+        android:id="@+id/title_albums"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="8dp"
-        android:text="Canciones:"
-        android:textSize="20sp"
+        android:text="Albums:"
+        tools:text="Holaaaaaaa"
+        android:textSize="20dp"
         android:textStyle="bold|italic"
         android:textColor="@color/white"/>
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/album_tracks_rv"
+        android:id="@+id/collectorAlbumItemRv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        tools:listitem="@layout/album_detail_tracks_item"
-        tools:layout_editor_absoluteX="0dp"/>
-    </LinearLayout>
+        android:layout_marginHorizontal="25dp"
+        tools:listitem="@layout/collector_detail_albums_item"/>
+</LinearLayout>
 </FrameLayout>

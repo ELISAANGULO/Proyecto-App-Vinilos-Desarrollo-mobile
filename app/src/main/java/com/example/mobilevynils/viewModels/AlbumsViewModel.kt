@@ -1,28 +1,33 @@
 package com.example.mobilevynils.viewModels
 
 import android.app.Application
-import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.example.mobilesvynilis.models.Album
+import com.example.mobilesvynilis.repositories.AlbumRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import com.example.mobilesvynilis.repositories.AlbumRepository
-class AlbumViewModel(application: Application, albumId: Int) :  AndroidViewModel(application) {
 
-    private val _album = MutableLiveData<Album>()
-    private val AlbumRepository = AlbumRepository(application)
-    private val _albumId = albumId
+class AlbumsViewModel(application: Application) :  AndroidViewModel(application) {
 
-    val album: LiveData<Album>
-        get() = _album
+    private val albumsRepository = AlbumRepository(application)
 
-    private var _eventNetworkError = MutableLiveData(false)
+    private val _albums = MutableLiveData<List<Album>>()
+
+    val albums: LiveData<List<Album>>
+        get() = _albums
+
+    private var _eventNetworkError = MutableLiveData<Boolean>(false)
 
     val eventNetworkError: LiveData<Boolean>
         get() = _eventNetworkError
 
-    private var _isNetworkErrorShown = MutableLiveData(false)
+    private var _isNetworkErrorShown = MutableLiveData<Boolean>(false)
 
     val isNetworkErrorShown: LiveData<Boolean>
         get() = _isNetworkErrorShown
@@ -35,9 +40,8 @@ class AlbumViewModel(application: Application, albumId: Int) :  AndroidViewModel
         try {
             viewModelScope.launch (Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    Log.i("ViewModel","${_albumId}")
-                    var data = AlbumRepository.refreshAlbumData(_albumId)
-                    _album.postValue(data)
+                    var data = albumsRepository.refreshData()
+                    _albums.postValue(data)
                 }
                 _eventNetworkError.postValue(false)
                 _isNetworkErrorShown.postValue(false)
@@ -48,16 +52,16 @@ class AlbumViewModel(application: Application, albumId: Int) :  AndroidViewModel
         }
     }
 
+
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
     }
 
-    class Factory(val app: Application, val albumId:Int) : ViewModelProvider.Factory {
+    class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            Log.i("ViewModel","Factory ${albumId}")
-            if (modelClass.isAssignableFrom(AlbumViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(AlbumsViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return AlbumViewModel(app, albumId) as T
+                return AlbumsViewModel(app) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

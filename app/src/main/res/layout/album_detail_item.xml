@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".AlbumsFragment">
+
+    <data>
+        <variable
+            name="album"
+            type="com.example.mobilesvynilis.models.Album" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/albumItemDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/AlbumNameTest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="@{album.name}"
+            android:textSize="25sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/AlbumCover"/>
+        <TextView
+            android:id="@+id/AlbumGenre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="@{album.genre}"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/AlbumNameTest"/>
+        <TextView
+            android:id="@+id/Description_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="5dp"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/white"
+            android:text="Descipción del album:"
+            app:layout_constraintTop_toBottomOf="@id/AlbumGenre"/>
+        <TextView
+            android:id="@+id/AlbumDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="@{album.description}"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/Description_title"/>
+        <ImageView
+            android:id="@+id/AlbumCover"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
