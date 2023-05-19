@@ -21,6 +21,7 @@ class CacheManager(context: Context) {
     private var comments: HashMap<Int, List<Comment>> = hashMapOf()
     private var album: HashMap<Int, Album> = hashMapOf()
     private var albums: List<Album> = mutableListOf()
+    private var albumes: HashMap<Int, List<Album>> = hashMapOf()
     private var artists: List<Artista> = mutableListOf<Artista>()
     private var artist: HashMap<Int, Artista> = hashMapOf()
     private var collector: HashMap<Int, Collector> = hashMapOf()
@@ -57,8 +58,6 @@ class CacheManager(context: Context) {
         return if (albums.isNotEmpty()) albums else mutableListOf()
     }
     /* End Album Cache Logic */
-
-
     fun addArtists(newArtists: List<Artista>) {
         if (artists.isEmpty()) {
             artists = newArtists
@@ -78,7 +77,11 @@ class CacheManager(context: Context) {
     fun getArtist(artistId: Int): Artista? {
         return artist[artistId]
     }
-
+    fun deleteAlbums(albumId: Int)
+    {
+        albums = albums.toMutableList()
+        (albums as MutableList<Album>).clear()
+    }
 
     fun addCollectors(newCollectors: List<Collector>) {
         if (collectors.isEmpty()) {
