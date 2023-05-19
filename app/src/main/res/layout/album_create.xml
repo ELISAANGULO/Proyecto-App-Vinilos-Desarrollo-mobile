@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:text="@string/titulo_nombre"
             android:textColor="@color/white"
-            android:textStyle="bold|italic"
+            android:textStyle="bold"
             android:textSize= "17dp"/>
 
         <EditText
@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
             android:hint="@string/hint_nombre"
+            android:textStyle="italic"
             android:inputType="textPersonName"
             android:labelFor="@id/textView2"
             android:minHeight="48dp"
@@ -44,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/titulo_url"
-            android:textStyle="bold|italic"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize= "17dp"/>
 
@@ -55,6 +56,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
             android:hint="@string/hint_url"
+            android:textStyle="italic"
             android:inputType="textPersonName"
             android:labelFor="@id/textView2"
             android:minHeight="48dp"
@@ -68,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/titulo_fecha"
-            android:textStyle="bold|italic"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize= "17dp"/>
 
@@ -79,6 +81,7 @@
             android:backgroundTint="@color/white"
             android:ems="10"
             android:hint="@string/hint_fecha"
+            android:textStyle="italic"
             android:inputType="date"
             android:minHeight="48dp"
             android:textColor="@color/white"
@@ -95,7 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/titulo_genero"
-            android:textStyle="bold|italic"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize= "17dp"/>
 
@@ -103,11 +106,12 @@
             android:id="@+id/generoAlbum"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:backgroundTint="@color/white"
+            android:popupBackground="@color/black"
             android:entries="@array/Genero"
-            android:minHeight="40dp"
-            android:padding="-20dp"
-            android:popupBackground="#1F1F1F"
+            android:minHeight="30dp"
+            android:padding="-10dp"
             android:theme="@style/spinnerTheme" />
 
         <TextView
@@ -115,7 +119,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/titulo_discografica"
-            android:textStyle="bold|italic"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize= "17dp"/>
 
@@ -123,12 +127,14 @@
             android:id="@+id/empresaAlbum"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:backgroundTint="@color/white"
             android:contentDescription="@string/titulo_discografica"
+            android:textStyle="italic"
             android:entries="@array/Disquera"
-            android:minHeight="40dp"
-            android:padding="-20dp"
-            android:popupBackground="#1F1F1F"
+            android:minHeight="30dp"
+            android:padding="-10dp"
+            android:popupBackground="@color/black"
             android:theme="@style/spinnerTheme"/>
 
         <TextView
@@ -136,7 +142,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/titulo_descripcion"
-            android:textStyle="bold|italic"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize= "17dp"/>
 
@@ -148,6 +154,7 @@
             android:ems="10"
             android:gravity="start|top"
             android:hint="@string/hint_descripcion"
+            android:textStyle="italic"
             android:inputType="textMultiLine"
             android:minHeight="48dp"
             android:textColor="@color/white"
@@ -161,13 +168,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="32dp"
             android:src="@android:drawable/ic_menu_save"
-            app:backgroundTint="#FFAA00"
+            app:backgroundTint="#FFC76F"
             app:fabSize="normal"
             android:layout_gravity="end|bottom"
             app:tint="@color/black"/>
-
-
-
 
 
     </LinearLayout>

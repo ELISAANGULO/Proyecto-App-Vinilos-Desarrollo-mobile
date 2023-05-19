@@ -52,8 +52,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
         android:src="@android:drawable/ic_input_add"
-        app:backgroundTint="@color/backgroundColorMenu"
+        app:backgroundTint="#FFC76F"
         app:fabSize="normal"
         android:layout_gravity="end|bottom"
-        app:tint="@color/white"/>
+        app:tint="@color/black"/>
 </FrameLayout>
