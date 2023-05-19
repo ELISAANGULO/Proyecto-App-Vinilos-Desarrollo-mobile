@@ -3,7 +3,7 @@ package com.example.mobilesvynilis.models
 import com.example.mobilevynils.models.Performer
 
 data class Album(
-    val albumId:Int,
+    val albumId:Int = -1,
     val name:String,
     val cover:String,
     val releaseDate:String,
