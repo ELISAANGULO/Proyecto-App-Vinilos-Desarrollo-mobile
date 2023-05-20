@@ -4,8 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="30dp">
+    android:layout_height="match_parent">
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
@@ -14,6 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
+
             >
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -37,8 +37,8 @@
         android:id="@+id/headerAlbumImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="false"
-        android:scaleType="centerInside"
+        android:adjustViewBounds="true"
+        android:scaleType="fitStart"
         android:src="@drawable/vicente"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -55,6 +55,7 @@
         android:src="@android:drawable/ic_input_add"
         app:backgroundTint="#FFC76F"
         app:fabSize="normal"
+        android:contentDescription="Nuevo Album"
         android:layout_gravity="end|bottom"
         app:tint="@color/black"/>
 </FrameLayout>

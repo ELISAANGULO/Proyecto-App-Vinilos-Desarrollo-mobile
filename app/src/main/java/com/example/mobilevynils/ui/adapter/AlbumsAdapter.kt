@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.LayoutRes
+import androidx.appcompat.widget.Toolbar
 import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
@@ -36,6 +37,7 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumsViewHolder>(){
             AlbumsAdapter.AlbumsViewHolder.LAYOUT,
             parent,
             false)
+
         return AlbumsAdapter.AlbumsViewHolder(withDataBinding)
     }
 

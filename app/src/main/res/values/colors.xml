@@ -15,4 +15,8 @@
     <color name="my_spinner_text_color">#FFFFFF</color>
     <color name="backgroundColorMenu">#FFC76F</color>
     <color name="todo_accent">#E91E63</color>
+    <color name="ColorPrimary">#3F51B5</color>
+    <color name="ColorPrimaryDark">#303F9F</color>
+    <color name="ColorAccent">#E91E63</color>
+    <color name="ColorActionBarTitle">#F06292</color>
 </resources>
