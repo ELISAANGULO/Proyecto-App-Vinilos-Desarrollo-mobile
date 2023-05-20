@@ -30,7 +30,7 @@
     <fragment
         android:id="@+id/collectorDetailFragment"
         android:name="com.example.mobilevynils.CollectorDetailFragment"
-        android:label="collector_detail_fragment"
+        android:label="Detalle de coleccionista"
         tools:layout="@layout/fragment_collector_detail" >
         <argument
             android:name="collectorId"
