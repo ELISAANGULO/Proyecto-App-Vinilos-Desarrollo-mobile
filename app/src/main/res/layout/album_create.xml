@@ -110,7 +110,7 @@
             android:backgroundTint="@color/white"
             android:popupBackground="@color/black"
             android:entries="@array/Genero"
-            android:minHeight="30dp"
+            android:minHeight="48dp"
             android:padding="-10dp"
             android:theme="@style/spinnerTheme" />
 
@@ -168,7 +168,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="32dp"
             android:src="@android:drawable/ic_menu_save"
-            app:backgroundTint="#FF9C00"
+            app:backgroundTint="#FFC76F"
             app:fabSize="normal"
             android:layout_gravity="end|bottom"
             app:tint="@color/black"/>
