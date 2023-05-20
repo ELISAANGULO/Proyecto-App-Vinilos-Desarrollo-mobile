@@ -167,7 +167,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="32dp"
-            android:contentDescription="Botón guardar"
+            android:contentDescription="enviar"
             android:src="@android:drawable/ic_menu_save"
             app:backgroundTint="#FFC76F"
             app:fabSize="normal"
