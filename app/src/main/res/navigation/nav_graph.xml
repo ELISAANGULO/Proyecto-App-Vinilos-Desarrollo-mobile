@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/collectorFragment"
         android:name="com.example.mobilevynils.CollectorFragment"
-        android:label="collector_fragment"
+        android:label="Coleccionistas"
         tools:layout="@layout/collector_fragment" >
         <action
             android:id="@+id/action_collectorFragment_to_collectorDetailFragment"
