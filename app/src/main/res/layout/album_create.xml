@@ -129,6 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:backgroundTint="@color/white"
+            android:contentDescription="Listado de empresas discograficas"
             android:textStyle="italic"
             android:entries="@array/Disquera"
             android:minHeight="48dp"
