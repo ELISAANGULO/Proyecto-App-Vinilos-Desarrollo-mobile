@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mobilesvynilis.models.Album
 import com.example.mobilesvynilis.models.Track
 import com.example.mobilevynils.R
 import com.example.mobilevynils.databinding.AlbumDetailTracksItemBinding
@@ -12,7 +13,15 @@ import com.example.mobilevynils.databinding.AlbumDetailTracksItemBinding
 class AlbumTracksAdapter(track_list: List<Track>) :
     RecyclerView.Adapter<AlbumTracksAdapter.AlbumTracksViewHolder>() {
 
-    private var trackList: List<Track> = track_list
+    var trackList: List<Track> = track_list
+     set(value) {
+            field = value
+            notifyDataSetChanged() // Actualiza el RecyclerView cuando se establece el nuevo valor
+        }
+
+    fun updateItems(newTrackList: List<Track>) {
+        trackList = newTrackList
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumTracksViewHolder {
         val withDataBinding: AlbumDetailTracksItemBinding = DataBindingUtil.inflate(

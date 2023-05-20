@@ -28,6 +28,7 @@ class AlbumRepository (val application: Application){
         }
     }
 
+
     fun createAlbum(datosAlbum: JSONObject, callback: (JSONObject)->Unit, onError: (VolleyError)->Unit): String {
 
         NetworkServiceAdapter.getInstance(application).postAlbum(datosAlbum,{
@@ -47,5 +48,6 @@ class AlbumRepository (val application: Application){
 
         return "OK";
     }
+
 
 }
