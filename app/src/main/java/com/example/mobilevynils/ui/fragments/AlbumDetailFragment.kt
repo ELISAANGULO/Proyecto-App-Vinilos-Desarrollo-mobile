@@ -1,11 +1,15 @@
 package com.example.mobilevynils.ui.fragments
 
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
@@ -65,8 +69,6 @@ class AlbumDetailFragment : Fragment() {
                     it1
                 ).show(fragManager,"newTaskTag" )
             }
-
-
 
         }
         //loadData()
