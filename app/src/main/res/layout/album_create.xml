@@ -23,7 +23,7 @@
             android:text="@string/titulo_nombre"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize= "17dp"/>
+            android:textSize= "17sp"/>
 
         <EditText
             android:id="@+id/nombreAlbum"
