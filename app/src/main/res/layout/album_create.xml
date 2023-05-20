@@ -38,7 +38,7 @@
             android:minHeight="48dp"
             android:textColor="@color/white"
             android:textColorHint="#F0F0F0"
-            android:textSize= "14dp"/>
+            android:textSize= "14sp"/>
 
         <TextView
             android:id="@+id/textView3"
@@ -47,7 +47,7 @@
             android:text="@string/titulo_url"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:textSize= "17dp"/>
+            android:textSize= "17sp"/>
 
         <EditText
             android:id="@+id/urlAlbum"
@@ -63,7 +63,7 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textColorHint="#F0F0F0"
-            android:textSize= "14dp"/>
+            android:textSize= "14sp"/>
 
         <TextView
             android:id="@+id/textView4"
@@ -72,7 +72,7 @@
             android:text="@string/titulo_fecha"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:textSize= "17dp"/>
+            android:textSize= "17sp"/>
 
         <EditText
             android:id="@+id/fechaAlbum"
@@ -90,7 +90,7 @@
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:textSize= "14dp"
+            android:textSize= "14sp"
             />
 
         <TextView
@@ -100,7 +100,7 @@
             android:text="@string/titulo_genero"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:textSize= "17dp"/>
+            android:textSize= "17sp"/>
 
         <Spinner
             android:id="@+id/generoAlbum"
@@ -110,7 +110,7 @@
             android:backgroundTint="@color/white"
             android:popupBackground="@color/black"
             android:entries="@array/Genero"
-            android:minHeight="30dp"
+            android:minHeight="48dp"
             android:padding="-10dp"
             android:theme="@style/spinnerTheme"/>
 
@@ -121,7 +121,7 @@
             android:text="@string/titulo_discografica"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:textSize= "17dp"/>
+            android:textSize= "17sp"/>
 
         <Spinner
             android:id="@+id/empresaAlbum"
@@ -129,10 +129,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:backgroundTint="@color/white"
-            android:contentDescription="@string/titulo_discografica"
+            android:contentDescription="Listado de empresas discograficas"
             android:textStyle="italic"
             android:entries="@array/Disquera"
-            android:minHeight="30dp"
+            android:minHeight="48dp"
             android:padding="-10dp"
             android:popupBackground="@color/black"
 
@@ -145,7 +145,7 @@
             android:text="@string/titulo_descripcion"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:textSize= "17dp"/>
+            android:textSize= "17sp"/>
 
         <EditText
             android:id="@+id/descripcionAlbum"
@@ -160,7 +160,7 @@
             android:minHeight="48dp"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
-            android:textSize= "14dp"/>
+            android:textSize= "14sp"/>
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -168,6 +168,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="32dp"
+            android:contentDescription="enviar"
             android:src="@android:drawable/ic_menu_save"
             app:backgroundTint="#FFC76F"
             app:fabSize="normal"
