@@ -64,17 +64,6 @@ class CollectorsViewModel(application: Application) :  AndroidViewModel(applicat
         }
     }*/
 
-    fun forceRefreshDataFromNetwork() {
-        collectorsRepository.refreshData({
-            _collectors.postValue(it)
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        },{
-            _eventNetworkError.value = true
-        }
-        )
-    }
-
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
     }

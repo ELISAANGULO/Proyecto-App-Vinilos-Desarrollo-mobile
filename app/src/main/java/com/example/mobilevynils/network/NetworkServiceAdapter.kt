@@ -43,22 +43,6 @@ class NetworkServiceAdapter constructor(context: Context) {
         // applicationContext keeps you from leaking the Activity or BroadcastReceiver if someone passes one in.
         Volley.newRequestQueue(context.applicationContext)
     }
-    private var album: HashMap<Int, Album> = hashMapOf()
-    /*fun getAlbums(onComplete:(resp:List<Album>)->Unit, onError: (error:VolleyError)->Unit){
-        requestQueue.add(getRequest("albums",
-            Response.Listener<String> { response ->
-                val resp = JSONArray(response)
-                val list = mutableListOf<Album>()
-                for (i in 0 until resp.length()) {
-                    val item = resp.getJSONObject(i)
-                    list.add(i, Album(id = item.getInt("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = item.getString("releaseDate"), genre = item.getString("genre"), description = item.getString("description")))
-                }
-                onComplete(list)
-            },
-            Response.ErrorListener {
-                onError(it)
-            }))
-    }*/
     suspend fun getAlbums()= suspendCoroutine<List<Album>>{ cont ->
         requestQueue.add(getRequest("albums",
             Response.Listener<String> { response ->
@@ -217,9 +201,6 @@ class NetworkServiceAdapter constructor(context: Context) {
     }
     private fun postRequest(path: String, body: JSONObject, responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
         return  JsonObjectRequest(Request.Method.POST, BASE_URL+path, body, responseListener, errorListener)
-    }
-    private fun putRequest(path: String, body: JSONObject, responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
-        return  JsonObjectRequest(Request.Method.PUT, BASE_URL+path, body, responseListener, errorListener)
     }
 
     suspend fun getArtists() = suspendCoroutine<List<Artista>> { cont ->

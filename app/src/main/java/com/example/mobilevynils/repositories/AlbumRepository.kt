@@ -38,7 +38,7 @@ class AlbumRepository (val application: Application){
             val fecha = formatter.format(parser.parse(it.getString("releaseDate")))
             val newList = albums.toMutableList()
             newList.add(Album(albumId = it.getInt("id"),name = it.getString("name"), cover = it.getString("cover"), recordLabel = it.getString("recordLabel"), releaseDate = fecha, genre = it.getString("genre"), description = it.getString("description"), comments = null, performers = null, tracks = null))
-            CacheManager.getInstance(application.applicationContext).deleteAlbums(-9999)
+            CacheManager.getInstance(application.applicationContext).deleteAlbums()
 
             CacheManager.getInstance(application.applicationContext).addAlbums(newList)
             callback(it)

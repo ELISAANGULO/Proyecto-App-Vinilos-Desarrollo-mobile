@@ -22,11 +22,6 @@ class AlbumAdapter: RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
             field = value
             notifyDataSetChanged()
         }
-    var tracks : List<Track>? = emptyList()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {

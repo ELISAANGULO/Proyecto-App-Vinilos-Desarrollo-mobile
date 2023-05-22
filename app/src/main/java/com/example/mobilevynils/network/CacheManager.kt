@@ -28,16 +28,6 @@ class CacheManager(context: Context) {
     private var collector: HashMap<Int, Collector> = hashMapOf()
     private var collectors: List<Collector> = mutableListOf<Collector>()
 
-    fun addComments(albumId: Int, comment: List<Comment>) {
-        if (!comments.containsKey(albumId)) {
-            comments[albumId] = comment
-        }
-    }
-
-    fun getComments(albumId: Int): List<Comment> {
-        return if (comments.containsKey(albumId)) comments[albumId]!! else listOf<Comment>()
-    }
-
     /* Start Album Cache Logic */
     fun addAlbum(albumId: Int, albums: Album) {
         if (!album.containsKey(albumId)) {
@@ -84,31 +74,15 @@ class CacheManager(context: Context) {
     fun getArtist(artistId: Int): Artista? {
         return artist[artistId]
     }
-    fun deleteAlbums(albumId: Int)
+    fun deleteAlbums()
     {
         albums = albums.toMutableList()
         (albums as MutableList<Album>).clear()
     }
 
-    fun addCollectors(newCollectors: List<Collector>) {
-        if (collectors.isEmpty()) {
-            collectors = newCollectors
-        }
-    }
-
-
-
-    fun addCollector(collectorId: Int, collector: Collector, collectors: MutableMap<Int, Collector>) {
-        if (!collectors.containsKey(collectorId)) {
-            collectors[collectorId] = collector
-        }
-    }
 
     fun getCollector(collectorId: Int): Collector? {
         return if (collector[collectorId] != null) collector[collectorId] else null
     }
 
-    fun getCollectors(): List<Collector> {
-        return if (collectors.isEmpty()) listOf<Collector>() else collectors
-    }
 }

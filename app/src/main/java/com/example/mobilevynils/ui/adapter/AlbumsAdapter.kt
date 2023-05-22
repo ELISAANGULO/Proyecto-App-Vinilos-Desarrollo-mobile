@@ -91,11 +91,4 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumsViewHolder>(){
         return texto
     }
 
-    fun displayPerformers(performerslist:List<Performer>?, textView: TextView) {
-        try {
-            textView.text = listPerformersToText(performerslist)
-        }catch (_: Exception){
-
-        }
-    }
 }
