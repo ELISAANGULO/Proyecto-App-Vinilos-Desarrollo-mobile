@@ -2,21 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="secondary_text">#757575</color>
-    <color name="gradient_start">#00ffffff</color>
-    <color name="gradient_end">#aa000000</color>
-    <color name="gradient_center">#00ffffff</color>
-    <color name="primaryColor">#212121</color>
-    <color name="primaryLightColor">#484848</color>
-    <color name="secondaryColor">#33691e</color>
-    <color name="secondaryLightColor">#629749</color>
     <color name="primaryTextColor">#ffffff</color>
     <color name="secondaryTextColor">#7D7D7D</color>
-    <color name="my_spinner_text_color">#FFFFFF</color>
     <color name="backgroundColorMenu">#FFC76F</color>
-    <color name="todo_accent">#E91E63</color>
+    <color name="ColorActionBarTitle">#F06292</color>
+    <color name="primaryLightColor">#484848</color>
     <color name="ColorPrimary">#3F51B5</color>
     <color name="ColorPrimaryDark">#303F9F</color>
-    <color name="ColorAccent">#E91E63</color>
-    <color name="ColorActionBarTitle">#F06292</color>
 </resources>

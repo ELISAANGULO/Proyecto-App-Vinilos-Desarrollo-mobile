@@ -54,7 +54,6 @@ class AlbumDetailFragment : Fragment() {
         return view
     }
 
-    private lateinit var taskViewModel: TracksViewModel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView = binding.albumDetailRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -70,32 +69,6 @@ class AlbumDetailFragment : Fragment() {
                 ).show(fragManager,"newTaskTag" )
             }
 
-        }
-        //loadData()
-    }
-
-     fun loadData() {
-        val args: AlbumDetailFragmentArgs by navArgs()
-        val activity = requireActivity()
-        activity.actionBar?.title = getString(R.string.title_albumes)
-        Log.i("AlbumId  katami ----", "${args.albumId}")
-         println("AlbumId  katami ----${args.albumId}")
-        viewModel = ViewModelProvider(
-            this,
-            AlbumViewModel.Factory(activity.application, args.albumId)
-        ).get(AlbumViewModel::class.java)
-
-        viewModel.album.observe(viewLifecycleOwner) {
-            it?.apply {
-                viewModelAdapter?.album = this
-
-                tracksRecyclerView.adapter = AlbumTracksAdapter(it.tracks!!)
-
-            }
-        }
-
-        viewModel.eventNetworkError.observe(viewLifecycleOwner) { isNetworkError ->
-            if (isNetworkError) onNetworkError()
         }
     }
 
