@@ -14,7 +14,7 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/ColCard"
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:paddingTop="5dp"
+                android:paddingTop="5sp"
+                android:layout_marginBottom="2sp"
                 android:background="@color/black">
 
                 <ImageView

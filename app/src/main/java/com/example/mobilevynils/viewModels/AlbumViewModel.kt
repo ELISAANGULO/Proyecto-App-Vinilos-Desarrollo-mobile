@@ -3,7 +3,9 @@ package com.example.mobilevynils.viewModels
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.mobilesvynilis.models.Album
+import com.example.mobilesvynilis.models.Track
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -14,8 +16,22 @@ class AlbumViewModel(application: Application, albumId: Int) :  AndroidViewModel
     private val AlbumRepository = AlbumRepository(application)
     private val _albumId = albumId
 
+
     val album: LiveData<Album>
         get() = _album
+
+    fun addNewTrack(newTrack: Track) {
+        val currentAlbum = _album.value
+        val currentTracks = currentAlbum?.tracks?.toMutableList()
+
+        currentTracks?.add(newTrack)
+
+        currentAlbum?.let {
+            val updatedAlbum = it.copy(tracks = currentTracks)
+            _album.value = updatedAlbum
+            refreshDataFromNetwork()
+        }
+    }
 
     private var _eventNetworkError = MutableLiveData(false)
 
@@ -31,7 +47,7 @@ class AlbumViewModel(application: Application, albumId: Int) :  AndroidViewModel
         refreshDataFromNetwork()
     }
 
-    private fun refreshDataFromNetwork() {
+     fun refreshDataFromNetwork() {
         try {
             viewModelScope.launch (Dispatchers.Default){
                 withContext(Dispatchers.IO){
@@ -47,6 +63,13 @@ class AlbumViewModel(application: Application, albumId: Int) :  AndroidViewModel
             _eventNetworkError.value = true
         }
     }
+    fun refreshData(swipeRefreshLayout: SwipeRefreshLayout){
+        refreshDataFromNetwork()
+        swipeRefreshLayout.isRefreshing = false
+    }
+
+
+
 
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true

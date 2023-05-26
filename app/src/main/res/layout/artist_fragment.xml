@@ -16,6 +16,7 @@
         android:src="@drawable/headerartistaa"
         android:layout_marginTop="-70dp"
         android:layout_marginBottom="35dp"
+        android:contentDescription="Artist Header"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,7 +24,7 @@
     <TextView
         android:id="@+id/ArtistTitle"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
         android:layout_centerHorizontal="true"
         android:text="@string/listado_de_artistas"

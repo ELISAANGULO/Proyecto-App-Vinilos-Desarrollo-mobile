@@ -1,17 +1,36 @@
 <resources>
     <string name="app_name">mobileVynils</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_artistas">Artistas</string>
     <string name="title_albumes">Albumes</string>
     <string name="title_coleccionistas">Coleccionistas</string>
-    <string name="agregar_album">Agregar Album</string>
     <string name="title_collectors">Coleccionistas</string>
-    <string name="title_comments">Comentarios del álbum</string>
     <string name="listado_de_artistas">Listado de Artistas</string>
     <string name="picture_of_the_artist">Picture of the Artist</string>
     <string name="artist_detail_biography">Biografia</string>
     <string name="artist_detail_albumes_title">Albumes Principales</string>
     <string name="artist_detail_premios_title">Premios</string>
     <string name="picture_of_the_album">Picture of the Album</string>
+    <string name="titulo_nombre">Nombre del album</string>
+    <string name="hint_url">Ingrese la URL</string>
+    <string name="titulo_url">Url Imagen Album</string>
+    <string name="hint_fecha">Ingrese la Fecha de lanzamiento</string>
+    <string name="titulo_fecha">Fecha De Lanzamiento</string>
+    <string name="titulo_genero">Genero Musical</string>
+    <string name="hint_descripcion">Ingrese la descripcion</string>
+    <string name="titulo_descripcion">Descripcion</string>
+    <string name="titulo_discografica">Ingrese Empresa Discografica</string>
+    <string-array name="Genero" >
+        <item>Salsa</item>
+        <item>Rock</item>
+    </string-array>
+
+    <string-array name="Disquera" >
+        <item>Sony Music</item>
+        <item>EMI</item>
+        <item>Discos Fuentes</item>
+        <item>Elektra</item>
+        <item>Fania Records</item>
+    </string-array>
+    <string name="hint_nombre">Ingrese el nombre del album</string>
 </resources>

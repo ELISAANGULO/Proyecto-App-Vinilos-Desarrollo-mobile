@@ -17,5 +17,7 @@
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@android:color/white</item>
         <item name="android:textColor">@android:color/black</item>
+
     </style>
+
 </resources>

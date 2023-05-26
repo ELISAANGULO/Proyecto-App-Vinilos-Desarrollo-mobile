@@ -9,13 +9,15 @@
             name="album"
             type="com.example.mobilesvynilis.models.Album" />
     </data>
-
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/albumItemDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
-        android:layout_marginTop="25dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -67,11 +69,15 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="fitXY"
+            android:contentDescription="AlbumCover"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+
+    </FrameLayout>
 </layout>
