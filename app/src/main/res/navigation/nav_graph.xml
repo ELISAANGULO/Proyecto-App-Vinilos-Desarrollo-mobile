@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/collectorFragment"
         android:name="com.example.mobilevynils.CollectorFragment"
-        android:label="collector_fragment"
+        android:label="Coleccionistas"
         tools:layout="@layout/collector_fragment" >
         <action
             android:id="@+id/action_collectorFragment_to_collectorDetailFragment"
@@ -30,7 +30,7 @@
     <fragment
         android:id="@+id/collectorDetailFragment"
         android:name="com.example.mobilevynils.CollectorDetailFragment"
-        android:label="collector_detail_fragment"
+        android:label="Detalle de coleccionista"
         tools:layout="@layout/fragment_collector_detail" >
         <argument
             android:name="collectorId"
@@ -68,6 +68,9 @@
             android:name="artistId"
             app:argType="integer" />
     </fragment>
-
+    <fragment
+        android:id="@+id/albumCreateFragment"
+        android:name="com.example.mobilevynils.ui.fragments.AlbumCreateFragment"
+        android:label="Create Album" />
 
 </navigation>

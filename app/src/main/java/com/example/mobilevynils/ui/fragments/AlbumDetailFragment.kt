@@ -1,17 +1,25 @@
 package com.example.mobilevynils.ui.fragments
 
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.mobilevynils.TracksDurationFragment
 import com.example.mobilevynils.R
+import com.example.mobilevynils.TracksViewModel
 import com.example.mobilevynils.databinding.AlbumDetailFragmentBinding
 import com.example.mobilevynils.ui.adapter.AlbumAdapter
 import com.example.mobilevynils.ui.adapter.AlbumTracksAdapter
@@ -29,7 +37,7 @@ class AlbumDetailFragment : Fragment() {
     private lateinit var viewModel: AlbumViewModel
     private var viewModelAdapter: AlbumAdapter? = null
     private lateinit var tracksRecyclerView: RecyclerView
-
+    private lateinit var swipeRefreshLayoutTrackDetail: SwipeRefreshLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +46,11 @@ class AlbumDetailFragment : Fragment() {
         _binding = AlbumDetailFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModelAdapter = AlbumAdapter()
+        swipeRefreshLayoutTrackDetail = view.findViewById(R.id.swipeRefreshLayoutTrackAlbumDetail)
+        swipeRefreshLayoutTrackDetail.setOnRefreshListener {
+            Log.d("refreshAlbums","Refresh")
+            viewModel.refreshData(swipeRefreshLayoutTrackDetail)
+        }
         return view
     }
 
@@ -47,6 +60,16 @@ class AlbumDetailFragment : Fragment() {
         recyclerView.adapter = viewModelAdapter
         tracksRecyclerView = binding.albumTracksRv
         tracksRecyclerView.layoutManager = LinearLayoutManager(context)
+
+        binding.newTaskButton.setOnClickListener{
+            var  fragManager= (view.context as FragmentActivity).supportFragmentManager
+            viewModel.album?.value?.albumId?.let { it1 ->
+                TracksDurationFragment(viewModel,this, tracksRecyclerView,
+                    it1
+                ).show(fragManager,"newTaskTag" )
+            }
+
+        }
     }
 
     @Deprecated("Deprecated in Java")

@@ -5,6 +5,7 @@ import com.example.mobilesvynilis.models.Album
 import com.example.mobilesvynilis.models.Artista
 import com.example.mobilesvynilis.models.Collector
 import com.example.mobilesvynilis.models.Comment
+import com.example.mobilesvynilis.models.Track
 
 
 class CacheManager(context: Context) {
@@ -21,20 +22,11 @@ class CacheManager(context: Context) {
     private var comments: HashMap<Int, List<Comment>> = hashMapOf()
     private var album: HashMap<Int, Album> = hashMapOf()
     private var albums: List<Album> = mutableListOf()
+    private var albumes: HashMap<Int, List<Album>> = hashMapOf()
     private var artists: List<Artista> = mutableListOf<Artista>()
     private var artist: HashMap<Int, Artista> = hashMapOf()
     private var collector: HashMap<Int, Collector> = hashMapOf()
     private var collectors: List<Collector> = mutableListOf<Collector>()
-
-    fun addComments(albumId: Int, comment: List<Comment>) {
-        if (!comments.containsKey(albumId)) {
-            comments[albumId] = comment
-        }
-    }
-
-    fun getComments(albumId: Int): List<Comment> {
-        return if (comments.containsKey(albumId)) comments[albumId]!! else listOf<Comment>()
-    }
 
     /* Start Album Cache Logic */
     fun addAlbum(albumId: Int, albums: Album) {
@@ -44,6 +36,12 @@ class CacheManager(context: Context) {
         }
 
     }
+
+    fun  deleteAlbum()
+    {
+        album = hashMapOf()
+    }
+
 
     fun getAlbum(albumId: Int): Album? {
         return if (album[albumId] != null) album[albumId] else null
@@ -57,8 +55,6 @@ class CacheManager(context: Context) {
         return if (albums.isNotEmpty()) albums else mutableListOf()
     }
     /* End Album Cache Logic */
-
-
     fun addArtists(newArtists: List<Artista>) {
         if (artists.isEmpty()) {
             artists = newArtists
@@ -78,27 +74,15 @@ class CacheManager(context: Context) {
     fun getArtist(artistId: Int): Artista? {
         return artist[artistId]
     }
-
-
-    fun addCollectors(newCollectors: List<Collector>) {
-        if (collectors.isEmpty()) {
-            collectors = newCollectors
-        }
+    fun deleteAlbums()
+    {
+        albums = albums.toMutableList()
+        (albums as MutableList<Album>).clear()
     }
 
-
-
-    fun addCollector(collectorId: Int, collector: Collector, collectors: MutableMap<Int, Collector>) {
-        if (!collectors.containsKey(collectorId)) {
-            collectors[collectorId] = collector
-        }
-    }
 
     fun getCollector(collectorId: Int): Collector? {
         return if (collector[collectorId] != null) collector[collectorId] else null
     }
 
-    fun getCollectors(): List<Collector> {
-        return if (collectors.isEmpty()) listOf<Collector>() else collectors
-    }
 }
